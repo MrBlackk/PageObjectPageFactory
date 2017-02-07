@@ -17,7 +17,8 @@ public class SignInToGithubTest extends TestBase {
     @Test(description = "Open Github page")
     public void openUrl() {
         Log4Test.test("Open Github page");
-        new HomePage(webDriver).open(TestData.GITHUB_URL);
+        new HomePage(webDriver)
+                .open(TestData.GITHUB_URL);
     }
 
     @Test(dependsOnMethods = "openUrl", description = "Sign In to Github and check Learn Github page")
@@ -27,7 +28,10 @@ public class SignInToGithubTest extends TestBase {
         }
 
         Log4Test.test("Signing in to Github");
-        String learnGit = new HomePage(webDriver).openSignInPage().signInToGithub(TestData.GITHUB_LOGIN, TestData.GITHUB_PASS).getLearnGitText();
+        String learnGit = new HomePage(webDriver)
+                .openSignInPage()
+                .signInToGithub(TestData.GITHUB_LOGIN, TestData.GITHUB_PASS)
+                .getLearnGitText();
 
         Log4Test.test("Checking Learn Github message");
         Assert.assertEquals(learnGit, TestData.LEARN_GIT_EXPECTED, "Learn Git message is not correct");
@@ -36,7 +40,10 @@ public class SignInToGithubTest extends TestBase {
     @Test(dependsOnMethods = "signInToGithub", description = "Open Create New Repository page")
     public void openCreateNewRepoPage() {
         Log4Test.test("Open Create New Repository Page");
-        String createNewText = new LearnGitPage(webDriver).openCreateNewRepositoryPage().getCreateNewRepo();
+        String createNewText = new LearnGitPage(webDriver)
+                .openCreateNewRepositoryPage()
+                .getCreateNewRepo();
+
         Assert.assertEquals(createNewText, TestData.CREATE_NEW_REPO_EXPECTED, "Learn Git message is not correct");
     }
 }
