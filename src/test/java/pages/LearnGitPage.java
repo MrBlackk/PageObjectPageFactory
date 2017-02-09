@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.Log4Test;
 
 /**
  * Created by chv on 03.02.2017.
@@ -31,6 +32,7 @@ public class LearnGitPage extends GeneralPage {
      * Click Start a Project button to open Create New Repository page
      */
     public CreateNewRepoPage openCreateNewRepositoryPage(){
+        Log4Test.test("Click Start a Project button to open Create New Repository Page");
         startProjectButton.click();
         return new CreateNewRepoPage(webDriver);
     }

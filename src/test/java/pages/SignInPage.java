@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.Log4Test;
 
 /**
  * Created by chv on 02.02.2017.
@@ -26,6 +27,7 @@ public class SignInPage extends GeneralPage {
      * Sign In to Github with login and password
      */
     public LearnGitPage signInToGithub(String login, String password){
+        Log4Test.test("Signing in to Github with login:" + login + " and pass: " + password);
         usernameInput.clear();
         usernameInput.sendKeys(login);
 
