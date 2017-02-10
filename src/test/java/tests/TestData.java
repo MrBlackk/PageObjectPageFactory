@@ -15,6 +15,7 @@ public class TestData {
 
     //URLs
     public static final String GITHUB_URL = "https://github.com/";
+    public static final String JQUERY_DROPPPABLE_URL = "https://jqueryui.com/droppable/";
 
     //Login and password (ADD before running test)
     public static final String GITHUB_LOGIN = "";
@@ -23,4 +24,6 @@ public class TestData {
     //Test data
     public static final String LEARN_GIT_EXPECTED = "Learn Git and GitHub without any code!";
     public static final String CREATE_NEW_REPO_EXPECTED = "Create a new repository";
+
+    public static final String DROPPABLE_EXPECTED = "Dropped!";
 }

@@ -6,4 +6,9 @@
             <class name="tests.SignInToGithubTest"/>
         </classes>
     </test>
+    <test name="DragNDropTest" >
+        <classes>
+            <class name="tests.DragNDropJQueryTest"/>
+        </classes>
+    </test>
 </suite>
