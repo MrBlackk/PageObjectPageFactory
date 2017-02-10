@@ -1,17 +1,11 @@
 package tests;
 
-import core.BrowserTypes;
-
 /**
  * Created by chv on 02.02.2017.
  *
  * Test Data
  */
 public class TestData {
-
-    //Browser Names
-    public static final BrowserTypes BROWSER_NAME = BrowserTypes.CHROME;
-//    public static final BrowserTypes BROWSER_NAME = BrowserTypes.FIREFOX;
 
     //URLs
     public static final String GITHUB_URL = "https://github.com/";

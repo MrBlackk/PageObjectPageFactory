@@ -1,11 +1,12 @@
 package core;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import tests.TestData;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.*;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -14,25 +15,32 @@ import java.util.concurrent.TimeUnit;
  * Test Base class
  */
 public abstract class TestBase {
-    protected static WebDriver webDriver;
-    protected static WebDriverWait wait;
+    protected ThreadLocal<RemoteWebDriver> threadDriver = null;
 
+    @BeforeClass
+    protected void setUp() throws MalformedURLException {
+        threadDriver = new ThreadLocal<RemoteWebDriver>();
+        DesiredCapabilities dc = new DesiredCapabilities().chrome();
+        dc.setBrowserName(DesiredCapabilities.chrome().getBrowserName());
+        threadDriver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc)); // hub url with at least two nodes to run in parallel
 
-    @BeforeSuite
-    protected void setUp() {
-        webDriver = WebDriverFactory.getWebDriver(TestData.BROWSER_NAME);
-        wait = new WebDriverWait(webDriver, 10);
-
-        webDriver.manage().window().maximize();
+        getDriver().manage().window().maximize();
 
         //default timeouts
-        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        webDriver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-        webDriver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+        getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        getDriver().manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        getDriver().manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
     }
 
-    @AfterSuite
+    /**
+     * Get driver instance
+     */
+    public WebDriver getDriver(){
+        return threadDriver.get();
+    }
+
+    @AfterClass
     protected void tearDown() {
-        webDriver.quit();
+        getDriver().quit();
     }
 }

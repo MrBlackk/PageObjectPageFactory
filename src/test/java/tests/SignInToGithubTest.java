@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LearnGitPage;
-import utils.Log4Test;
 
 /**
  * Created by chv on 02.02.2017.
@@ -16,7 +15,7 @@ public class SignInToGithubTest extends TestBase {
 
     @Test(description = "Open Github page")
     public void openUrl() {
-        new HomePage(webDriver)
+        new HomePage(getDriver())
                 .open(TestData.GITHUB_URL);
     }
 
@@ -26,7 +25,7 @@ public class SignInToGithubTest extends TestBase {
             Assert.fail("Login or password is empty, Please check TestData class");
         }
 
-        String learnGit = new HomePage(webDriver)
+        String learnGit = new HomePage(getDriver())
                 .openSignInPage()
                 .signInToGithub(TestData.GITHUB_LOGIN, TestData.GITHUB_PASS)
                 .getLearnGitText();
@@ -36,7 +35,7 @@ public class SignInToGithubTest extends TestBase {
 
     @Test(dependsOnMethods = "signInToGithub", description = "Open Create New Repository page")
     public void openCreateNewRepoPage() {
-        String createNewText = new LearnGitPage(webDriver)
+        String createNewText = new LearnGitPage(getDriver())
                 .openCreateNewRepositoryPage()
                 .getCreateNewRepo();
 

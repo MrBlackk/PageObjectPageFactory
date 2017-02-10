@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-
-<suite name="Suite" verbose="7" >
+<!--  parallel="tests" thread-count="2" - tests will run in parallel on nodes in 2 threads-->
+<suite name="Suite" verbose="7" parallel="tests" thread-count="2">
     <test name="GitHubLoginTest" >
         <classes>
             <class name="tests.SignInToGithubTest"/>

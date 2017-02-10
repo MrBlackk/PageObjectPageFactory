@@ -13,10 +13,10 @@ public class DragNDropJQueryTest extends TestBase {
 
     @Test(description = "Open JQuery droppable page and drag-n-drop element")
     public void dragNDropTest() {
-        new JQueryDroppablePage(webDriver)
+        new JQueryDroppablePage(getDriver())
                 .open(TestData.JQUERY_DROPPPABLE_URL);
 
-        String actualDroppable = new JQueryDroppablePage(webDriver)
+        String actualDroppable = new JQueryDroppablePage(getDriver())
                 .dragNDropDraggableToDroppable()
                 .getDroppableText();
 
